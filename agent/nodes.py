@@ -10,8 +10,9 @@ from agent.prompts import SYSTEM_PROMPT
 
 
 def analyzer_node(state: HiringAgentState) -> dict:
-    llm = ChatOpenAI(model=OPENAI_MODEL, temperature=0.2)
+    llm = ChatOpenAI(model=OPENAI_MODEL, temperature=0.2, max_tokens=2500)
     structured_llm = llm.with_structured_output(ExtractionOutput)
+
 
     state_context = (
         f"CURRENT JD SLOTS: {state.get('jd_slots', {})}\n"
